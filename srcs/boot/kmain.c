@@ -21,8 +21,6 @@ void bos_kmain(s_boot_info * p_bif)
 
 // test part
 
-
-
 // end test part
     while (1);
 }

@@ -27,6 +27,7 @@ typedef struct
     int (*print_char)(char p_char, void *p_parameters, s_coords p_position);
     void (*clear_screen)(void);
     void (*clear_area)(s_coords p_position, s_size p_size);
+    int (*get_char)(s_coords p_position, char* p_char, void* p_param);
 } s_abstract_video_api;
 
 s_abstract_video_api i_abstract_video_api;
