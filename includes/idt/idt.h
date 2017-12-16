@@ -2,7 +2,7 @@
 #define IDT_H_
 
 #define INT_GATE 0x8E
-#define IDT_ADDRESS 0x0
+#define IDT_ADDRESS 0x08
 #define IDT_NB_ENTRIES 255
 #define IDT_SIZE 0x3FC0
 

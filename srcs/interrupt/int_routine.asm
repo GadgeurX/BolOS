@@ -44,42 +44,49 @@ _int_asm_double_fault:
     SAVE_REGS
     call int_double_fault
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_inv_tss:
     SAVE_REGS
     call int_inv_tss
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_seg_not_present:
     SAVE_REGS
     call int_seg_not_present
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_stack_segment_fault:
     SAVE_REGS
     call int_stack_segment_fault
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_general_protection_fault:
     SAVE_REGS
     call int_general_protection_fault
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_page_fault:
     SAVE_REGS
     call int_page_fault
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_align_fault:
     SAVE_REGS
     call int_align_fault
     RESTORE_REGS
+    add esp, 4
     iret
 
 _int_asm_default:
