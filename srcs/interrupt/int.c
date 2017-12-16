@@ -11,7 +11,7 @@ void int_default()
     byte attr = 0x0E;
     print(BOS_ERR_MSG_WARNING, &attr);
     attr = 0x0F;
-    print("interrupt not handled\n", &attr);
+    print(BOS_ERR_MSG_INT_NOT_HANDLE, &attr);
     PIC1_EOF_INT;
 }
 
