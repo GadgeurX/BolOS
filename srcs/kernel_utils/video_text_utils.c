@@ -19,6 +19,13 @@ void scroll_up()
         }
         cursor.x++;
     }
+    cursor.x = 0;
+    while (cursor.x < i_abstract_video_api.get_screen_resolution().x)
+    {
+        char attr = 0;
+        cursor.y = i_abstract_video_api.get_screen_resolution().y - 1;
+        i_abstract_video_api.print_char(0, &attr, cursor);
+    }
 }
 
 void print(char *p_str, void *p_param)
