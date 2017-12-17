@@ -1,50 +1,55 @@
 #include "kernel_utils/video_text_utils.h"
 
-void print_line(char *p_str, void *p_param)
+void scroll_up()
 {
-    int str_offset = 0;
-
-    s_resolution screen_resolution =
-	i_abstract_video_api.get_screen_resolution();
-
-    s_coords local_coords;
-
-    local_coords.x = 0;
-    local_coords.y = screen_resolution.y - 1;	// stay at the botom line
-
-    while (p_str[str_offset] != '\0')
+    s_coords cursor;
+    cursor.x = 0;
+    
+    while (cursor.x < i_abstract_video_api.get_screen_resolution().x)
     {
-
-	if (local_coords.x >= screen_resolution.x ||
-	    p_str[str_offset] == '\n' || p_str[str_offset] == '\r')
-	{
-	    move_text_upward();
-	    local_coords.x = 0;
-	    if (local_coords.x < screen_resolution.x)
-		str_offset++;
-	}
-	print_char(p_str[str_offset], p_param, local_coords);
-	local_coords.x++;
-	str_offset++;
+        cursor.y = 0;
+        while (cursor.y < i_abstract_video_api.get_screen_resolution().y)
+        {
+            char character = 0;
+            char attr = 0;
+            i_abstract_video_api.get_char(cursor, &character, &attr);
+            cursor.y--;
+            i_abstract_video_api.print_char(character, &attr, cursor);
+            cursor.y += 2;
+        }
+        cursor.x++;
     }
-    move_text_upward();
+    cursor.x = 0;
+    while (cursor.x < i_abstract_video_api.get_screen_resolution().x)
+    {
+        char attr = 0;
+        cursor.y = i_abstract_video_api.get_screen_resolution().y - 1;
+        i_abstract_video_api.print_char(0, &attr, cursor);
+    }
 }
 
-void move_text_upward()
+void print(char *p_str, void *p_param)
 {
-    s_resolution screen_resolution =
-	i_abstract_video_api.get_screen_resolution();
-
-    // position offirst character of second line
-    int buffer_offset = screen_resolution.x * 2;
-
-    int local_position = 0;
-    int screen_buffer_size = screen_resolution.x * screen_resolution.y * 2;
-
-
-    while (local_position < screen_buffer_size)
+    static s_coords cursor;
+    while (*p_str != 0)
     {
-	g_video[local_position] = g_video[local_position + buffer_offset];
-	local_position++;
+        if (*p_str == '\n')
+        {
+            cursor.x = 0;
+            if (cursor.y < i_abstract_video_api.get_screen_resolution().y)
+                cursor.y++;
+            else
+                scroll_up();
+        }
+        else
+            i_abstract_video_api.print_char(*p_str, p_param, cursor);
+        cursor.x++;
+        p_str++;
     }
+}
+
+void print_line(char *p_str, void *p_param)
+{
+    print(p_str, p_param);
+    print("\n", 0);
 }

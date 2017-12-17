@@ -39,6 +39,24 @@ int print_char(char p_char, void *p_parameters, s_coords p_position)
     return BOS_OK;
 }
 
+int get_char(s_coords p_position, char* p_char, void* p_param)
+{
+    s_resolution screen_resolution = get_screen_resolution();
+
+    if (p_position.y > screen_resolution.y || p_position.y < 0
+	|| p_position.x > screen_resolution.x || p_position.x < 0)
+    {
+	return BOS_ERR_TRY_READ_OUT_OF_SCREEN;
+    }
+
+    int coord = ((p_position.y * screen_resolution.x) + p_position.x) * 2;
+
+    *p_char = g_video[coord];
+    *((char*)p_param) = g_video[coord + 1];
+
+    return BOS_OK;
+}
+
 void clear_area(s_coords p_position, s_size p_size)
 {
     byte char_data = 0;
@@ -64,6 +82,7 @@ void init_driver(s_abstract_video_api * p_abstract_api)
     (*p_abstract_api).print_char = print_char;
     (*p_abstract_api).clear_screen = clear_screen;
     (*p_abstract_api).clear_area = clear_area;
+    (*p_abstract_api).get_char = get_char;
 
     g_video_type = TEXT;
     g_video = VIDEO_MEM_ADDR;

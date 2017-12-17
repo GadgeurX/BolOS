@@ -4,6 +4,7 @@
 #include "video/implementations/bos_text_implem.h"
 
 void print_line(char *p_str, void* p_param);
-void move_text_upward();
+void print(char *p_str, void *p_param);
+void scroll_up();
 
 #endif
