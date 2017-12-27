@@ -5,12 +5,12 @@ char p_mem_map[0x20000];
 void init_p_mem(u32 up_mem)
 {
     u32 i = 0;
-    while (i < 0x20000)
+    while (i < PAGE_4_GO)
     {
-        if (i < 2048 || i > up_mem / 4096)
-            p_mem_map[i] = 1;
-        else
-            p_mem_map[i] = 0;
+		if (i < 2048 || i > up_mem / 4096)
+			alloc_p_mem(i);
+		else
+			free_p_mem(i);
         i++;
     }
 }
@@ -33,14 +33,14 @@ void free_p_mem(u32 p_nb_page)
 char *get_next_p_mem()
 {
     int i = 0;
-    while (i < 0x20000)
+    while (i < PAGE_4_GO)
     {
         u32 octect = i / 8;
         u32 bit_index = i % 8;
         char bit = (p_mem_map[octect] >> bit_index) & 1U;
-        if (bit == 0)
-            return ((char*)(i * 4096));
+		if (bit == 0)
+			return alloc_p_mem(i);
         i++;
     }
-    return (char *)BOS_ERR_NOT_ENOUGH_PHYSIC_MEMORY;
+    return (char *)NULL;
 }

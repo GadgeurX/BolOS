@@ -55,3 +55,16 @@ dkms.conf
 *.bin
 *.iso
 
+.vs/bolos/v15/.suo
+.vs/bolos/v15/Browse.VC.db
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+bolos.sln
+bolos.vcxproj
+bolos.vcxproj.filters
+bolos.vcxproj.user
+obj/ARM/Debug/367508531.RemoteProjectDirFile.tlog
+obj/x86/Debug/367508531.RemoteProjectDirFile.tlog
+obj/x86/Debug/bolos.Build.CppClean.log
+obj/x86/Debug/bolos.log
