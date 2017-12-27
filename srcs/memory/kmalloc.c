@@ -155,3 +155,18 @@ void *malloc(u32 size)
 	}
 	return NULL;
 }
+
+void free(void *ptr)
+{
+	t_header	*head;
+	t_header	*next;
+
+	if (ptr == NULL)
+		return;
+	if (!(ptr < get_end(NULL) && ptr > ADDR_12_MO))
+		return;
+	head = ptr - sizeof(t_header);
+	head->free = 0;
+	head->size += head->offset;
+	head->offset = 0;
+}

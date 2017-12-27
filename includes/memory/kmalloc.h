@@ -17,5 +17,6 @@ typedef struct __attribute__((__packed__))   s_header
 void *ksbrk(int nb_octect);
 int init_ksbrk();
 void *malloc(u32 size);
+void free(void *ptr);
 
 #endif
