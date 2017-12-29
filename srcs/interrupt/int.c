@@ -12,6 +12,8 @@ void int_default()
     print(BOS_ERR_MSG_WARNING, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_INT_NOT_HANDLE, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -28,6 +30,8 @@ void int_divide_zero()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_DIV_ZERO, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -37,6 +41,8 @@ void int_inv_opcode()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_INV_OPCODE, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -46,6 +52,8 @@ void int_dev_not_available()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_DEV_NOT_AVAILABLE, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -55,6 +63,8 @@ void int_double_fault()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_DOUBLE_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -64,6 +74,8 @@ void int_inv_tss()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_INV_TSS, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -73,6 +85,8 @@ void int_seg_not_present()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_SEG_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -82,6 +96,8 @@ void int_stack_segment_fault()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_STACK_SEG_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -91,6 +107,8 @@ void int_general_protection_fault()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_GENERAL_PROTECTION_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -100,6 +118,8 @@ void int_page_fault()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_PAGE_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }
 
@@ -109,5 +129,7 @@ void int_align_fault()
     print(BOS_ERR_MSG_ERROR, &attr);
     attr = 0x0F;
     print(BOS_ERR_MSG_ALIGN_FAULT, &attr);
+	cli;
+	asm("hlt");
     PIC1_EOF_INT;
 }

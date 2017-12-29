@@ -43,7 +43,7 @@ indent:
 	$(RM) $(TEMPFILES)
 
 qrun:
-	qemu-system-i386 -kernel $(NAME)
+	qemu-system-i386 -kernel $(NAME) -S -s
 
 brun:
 	bochs.exe -f bochsrc.bxrc
