@@ -80,6 +80,8 @@ void *get_end(void *ptr)
 
 char is_new_block(t_header *head)
 {
+	if (head >= ksbrk(0))
+		return 1;
 	if (head->free == 0 && head->size == 0 && head->offset == 0)
 		return (1);
 	return (0);
